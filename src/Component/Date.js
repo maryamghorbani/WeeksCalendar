@@ -3,7 +3,9 @@ import React from 'react';
 
 function Date() {
 	return (
-		<div>Its Date</div>
+		<div>Its Date
+			<button className="btn btn-primary">hi</button>
+		</div>
 		);
 }
 
