@@ -1,9 +1,15 @@
 import React from 'react';
 
+// import components
+import Date from "./Date";
+import DayEvents from "./DayEvents";
 
 function Calendar() {
 	return (
-		<div>Hello!</div>
+		<div>
+			<Date />
+			<DayEvents />
+		</div>
 		);
 }
 
