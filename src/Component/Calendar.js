@@ -2,14 +2,20 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import * as dayjs from 'dayjs';
 
+// import css
+import './CSS/Calendar.css'
+
 // import components
 import Date from "./Date";
 import DayEvents from "./DayEvents";
+import CalendarHeader from "./CalendarHeader";
 
 function Calendar() {
 	return (
-		<div className="container">
-			<Table hover bordered responsive>
+		<div className="">
+		<CalendarHeader />
+			<Table id="calendar" hover bordered responsive>
+
 			  <thead>
 			    <tr className="text-center">
 			      <th>Tue</th>
@@ -21,6 +27,7 @@ function Calendar() {
 			      <th>Mon</th>
 			    </tr>
 			  </thead>
+
 			  <tbody>
 			    <tr>
 			      <td>1</td>
@@ -28,10 +35,11 @@ function Calendar() {
 			      <td>1</td>
 			      <td>1</td>
 			      <td>Mark</td>
-			      <td>Otto</td>
+			      <td><tr>A</tr><tr>B</tr><tr>C</tr><tr>D</tr></td>
 			      <td>@mdo</td>
 			    </tr>
 			  </tbody>
+
 			</Table>
 		</div>
 		);
