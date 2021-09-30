@@ -12,9 +12,9 @@ import CalendarHeader from "./CalendarHeader";
 
 function Calendar() {
 	return (
-		<div className="">
-		<CalendarHeader />
-			<Table id="calendar" hover bordered responsive>
+		<div id="calendar">
+			<CalendarHeader />
+			<Table hover bordered responsive>
 
 			  <thead>
 			    <tr className="text-center">

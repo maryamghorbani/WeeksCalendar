@@ -1,14 +1,64 @@
 #calendar {
 	margin: 10% auto;
 	width: 900px;
-	background-color: #FFFFFF;
 	border-radius: 6px;
+	padding: 1% 2% 2%;
 	box-shadow: 0 1px 2px #C3C3C3;
 	-webkit-box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
 	-moz-box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
 	box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
 }
 .calendar-header {
-	width: 100%;
-	border-radius: 6px 6px 0 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+#calendar Table {
+	margin-bottom: 0;
+}
+.calendar-button {
+	font-family: 'Roboto', sans-serif;
+	color: #75b9ce;
+	position: relative;
+	display: inline-block;
+	padding: 0 .6em;
+	overflow: hidden;
+	height: 1.9em;
+	line-height: 1.9em;
+	white-space: nowrap;
+	cursor: pointer;
+	border: 1px solid #75b9ce;
+}
+.button-prev {
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;	
+	margin-right: -1px;
+
+}
+.button-next {
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	margin-right: 0;
+}
+.text-arrow {
+	margin: 0 .4em;
+	font-size: 2em;
+	line-height: 23px;
+	vertical-align: baseline;
+	font-weight: bold;
+}
+Table th {
+	font-family: 'Roboto', sans-serif;
+	background: #75b9ce !important;
+	color: #FFF;
+	font-size: 14px !important;
+	font-weight: 500 !important;
+}
+.day-dropdown {
+	background: #75b9ce !important;
+	border: none !important;
+    line-height: 1.2em !important;
+}
+Table td {
+	color: gray;
 }
