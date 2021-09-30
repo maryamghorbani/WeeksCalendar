@@ -1,6 +1,5 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
-import * as dayjs from 'dayjs';
 
 // import css
 import './CSS/Calendar.css'
@@ -18,13 +17,13 @@ function Calendar() {
 
 			  <thead>
 			    <tr className="text-center">
+			      <th>Mon</th>
 			      <th>Tue</th>
 			      <th>Wed</th>
 			      <th>Thu</th>
 			      <th>Fri</th>
 			      <th>Sat</th>
 			      <th>Sun</th>
-			      <th>Mon</th>
 			    </tr>
 			  </thead>
 
