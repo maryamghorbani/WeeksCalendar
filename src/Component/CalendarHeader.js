@@ -1,11 +1,44 @@
-import React from 'react';
+import React , { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { format, getWeek, subWeeks, addWeeks, subMonths, addMonths } from "date-fns";
 
 // import CSS
 import './CSS/Calendar.css'
 
 
 function CalendarHeader() {
+
+	const dateFormat = "MMM yyyy";
+
+	const [currentMonth, setCurrentMonth] = useState(new Date());
+	const [currentWeek, setCurrentWeek] = useState(getWeek(currentMonth));
+
+
+	const changeMonthHandle = (btnType) => {
+	    if (btnType === "prev") {
+	      setCurrentMonth(subMonths(currentMonth, 1));
+	    }
+	    if (btnType === "next") {
+	      setCurrentMonth(addMonths(currentMonth, 1));
+	    }
+	  };
+	const changeWeekHandle = (btnType) => {
+	    //console.log("current week", currentWeek);
+	    if (btnType === "prev") {
+	      //console.log(subWeeks(currentMonth, 1));
+	      setCurrentMonth(subWeeks(currentMonth, 1));
+	      setCurrentWeek(getWeek(subWeeks(currentMonth, 1)));
+	    }
+	    if (btnType === "next") {
+	      //console.log(addWeeks(currentMonth, 1));
+	      setCurrentMonth(addWeeks(currentMonth, 1));
+	      setCurrentWeek(getWeek(addWeeks(currentMonth, 1)));
+	    }
+	  };
+
+
+
+
 	return (
 		<div class="calendar-header">
 		
@@ -26,11 +59,14 @@ function CalendarHeader() {
 				  </Dropdown.Menu>
 				</Dropdown>
 			</div>
+			<div className="months">
+	          <span>{format(currentMonth, dateFormat)}</span>
+	        </div>
 			<div class="header-right">
-				<span class="calendar-button button-prev">
+				<span class="calendar-button button-prev" onClick={() => changeWeekHandle("prev")}>
 					<span class="text-arrow">‹</span>
 				</span>
-				<span class="calendar-button button-next">
+				<span class="calendar-button button-next" onClick={() => changeWeekHandle("next")}>
 					<span class="text-arrow">›</span>
 				</span>
 			</div>

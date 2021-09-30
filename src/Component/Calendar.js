@@ -22,6 +22,8 @@ import DayEvents from "./DayEvents";
 import CalendarHeader from "./CalendarHeader";
 
 function Calendar() {
+
+	
 	return (
 		<div id="calendar">
 			<CalendarHeader />

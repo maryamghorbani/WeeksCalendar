@@ -62,3 +62,7 @@ Table th {
 Table td {
 	color: gray;
 }
+.months {
+	color: #75b9ce;
+	font-weight: 500;
+}
