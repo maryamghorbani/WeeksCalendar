@@ -47,12 +47,15 @@
 	vertical-align: baseline;
 	font-weight: bold;
 }
-Table th {
+.days {
 	font-family: 'Roboto', sans-serif;
 	background: #75b9ce !important;
 	color: #FFF;
-	font-size: 14px !important;
+	font-size: 16px !important;
 	font-weight: 500 !important;
+	text-align: center;
+	border-top-right-radius: 6px;
+	border-top-left-radius: 6px; 
 }
 .day-dropdown {
 	background: #75b9ce !important;
