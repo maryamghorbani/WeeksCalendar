@@ -1,6 +1,6 @@
 #calendar {
 	margin: 10% auto;
-	width: 900px;
+	width: 800px;
 	border-radius: 6px;
 	padding: 1% 2% 2%;
 	box-shadow: 0 1px 2px #C3C3C3;
@@ -11,6 +11,7 @@
 .calendar-header {
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 1%;
 }
 
 #calendar Table {
@@ -56,6 +57,16 @@
 	text-align: center;
 	border-top-right-radius: 6px;
 	border-top-left-radius: 6px; 
+}
+.days-col {
+	padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+.days-col div {
+	padding: 8%;
+}
+.day {
+	border-bottom: 1px solid gray;
 }
 .day-dropdown {
 	background: #75b9ce !important;

@@ -12,23 +12,23 @@ import './CSS/Calendar.css'
 const Calendar = (  ) => {
 
 	const dateFormat = "MMM yyyy";
+	
 
 	const [currentMonth, setCurrentMonth] = useState(new Date());
 	const [weekStartDay, setweekStartDay] = useState(startOfWeek(currentMonth));
-	const [currentWeek, setCurrentWeek] = useState(getWeek(currentMonth));
 
+	
 
 	const changeWeekHandle = (btnType) => {
+		
 	    
 	    if (btnType === "prev") {
 	      
 	      setCurrentMonth(subWeeks(currentMonth, 1));
-	      setCurrentWeek(getWeek(subWeeks(currentMonth, 1)));
 	    }
 	    if (btnType === "next") {
 	      
 	      setCurrentMonth(addWeeks(currentMonth, 1));
-	      setCurrentWeek(getWeek(addWeeks(currentMonth, 1)));
 	    }
 	  };
 
@@ -43,12 +43,17 @@ const Calendar = (  ) => {
 	    let startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
 	    for (let i = 0; i < 7; i++) {
 	      days.push(
-	        <div className="col" key={i}>
-	          {format(addDays(startDate, i), dateFormat)}
+	        <div className="col days-col">
+	        	<div className="day" key={i}>
+		          {format(addDays(startDate, i), dateFormat)}
+		        </div>
+		        <div className="events">
+		          **
+		        </div>
 	        </div>
 	      );
 	    }
-	    return <div className="row">{days}</div>;
+	    return days;
 	  };
 
 
@@ -88,7 +93,8 @@ const Calendar = (  ) => {
 				</div>
 					
 			</div>
-			<div className="days">{Days()}</div>
+			<div className="row days">{Days()}</div>
+
 
 		</div>
 		);
