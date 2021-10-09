@@ -1,4 +1,5 @@
-import React , { useState } from 'react';
+import React , { useState , useEffect } from 'react';
+import axios from "axios";
 import Dropdown from 'react-bootstrap/Dropdown';
 import { format, startOfWeek, addDays, getWeek, addWeeks, subWeeks } from "date-fns";
 
@@ -17,7 +18,24 @@ const Calendar = (  ) => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());
 	const [weekStartDay, setweekStartDay] = useState(startOfWeek(currentMonth));
 
+
+
+
+
+	useEffect(() => {
+		const events = {
+		  "apiKey": "ac258f2b29d09194ce6aa01a0438a8e5",
+		  "startDate": "2019-02-01",
+		  "endDate": "2019-02-28"
+		}
+		axios.post(`https://wozmx9dh26.execute-api.eu-west-1.amazonaws.com/api/holidays`, events)
+			.then ( response => console.log(response.data.holidays))
+			.catch ( err => console.log(err));
+	},[]);
 	
+
+
+
 
 	const changeWeekHandle = (btnType) => {
 		
