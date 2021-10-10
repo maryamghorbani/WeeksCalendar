@@ -21,18 +21,26 @@ const Calendar = (  ) => {
 
 
 
+	const [events , setEvents] = useState({});
 
-	useEffect(() => {
-		const events = {
+    const getEvents = () => {
+        const request = {
 		  "apiKey": "ac258f2b29d09194ce6aa01a0438a8e5",
-		  "startDate": "2019-02-01",
-		  "endDate": "2019-02-28"
+		  "startDate": "2021-10-10",
+		  "endDate": "2021-10-17"
 		}
-		axios.post(`https://wozmx9dh26.execute-api.eu-west-1.amazonaws.com/api/holidays`, events)
-			.then ( response => console.log(response.data.holidays))
+		axios.post(`https://wozmx9dh26.execute-api.eu-west-1.amazonaws.com/api/holidays`, request)
+			.then ( response => {
+				const events = response.data;
+                setEvents(events?.holidays ?? {});
+
+                // pass data response to state
+			})
 			.catch ( err => console.log(err));
-	},[]);
-	
+    }
+    useEffect(() => getEvents(), []);
+
+    
 
 
 
@@ -54,6 +62,10 @@ const Calendar = (  ) => {
 	  	  setweekStartDay(startOfWeek(currentMonth, { weekStartsOn: numberOfDay }))
 	  }
 
+	  const checkEvents = (day) => {
+	  	const holidays = events[day] ?? [];
+	  	return holidays.map(h => <div>{h.name}</div>)
+	  }
 
 	 const Days = (numberOfDay) => {
 	    const dateFormat = "d MM yyyy ccc";
@@ -66,8 +78,11 @@ const Calendar = (  ) => {
 		          {format(addDays(startDate, i), dateFormat)}
 		        </div>
 		        <div className="events">
-		          **
+		          {
+		          	checkEvents(format(addDays(startDate, i), 'yyyy-MM-dd'))
+		          }	
 		        </div>
+		        
 	        </div>
 	      );
 	    }
