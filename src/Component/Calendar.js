@@ -18,7 +18,11 @@ const Calendar = (  ) => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());
 	const [weekStartDay, setweekStartDay] = useState(startOfWeek(currentMonth));
 
+	let startWeek = startOfWeek(currentMonth, { weekStartsOn: 1 });
+	let startDate = format(startWeek,'yyyy-MM-dd')
+	let endDate = format(addDays(startWeek,6), 'yyyy-MM-dd');
 
+	console.log(startDate, endDate)
 
 
 	const [events , setEvents] = useState({});
@@ -70,22 +74,24 @@ const Calendar = (  ) => {
 	 const Days = (numberOfDay) => {
 	    const dateFormat = "d MM yyyy ccc";
 	    const days = [];
-	    let startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
+
 	    for (let i = 0; i < 7; i++) {
 	      days.push(
 	        <div className="col days-col">
 	        	<div className="day" key={i}>
-		          {format(addDays(startDate, i), dateFormat)}
+		          {format(addDays(startWeek, i), dateFormat)}
 		        </div>
 		        <div className="events">
 		          {
-		          	checkEvents(format(addDays(startDate, i), 'yyyy-MM-dd'))
+		          	checkEvents(format(addDays(startWeek, i), 'yyyy-MM-dd'))
 		          }	
 		        </div>
 		        
 	        </div>
 	      );
+
 	    }
+
 	    return days;
 	  };
 
