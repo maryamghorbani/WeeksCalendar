@@ -1,7 +1,7 @@
 import React , { useState , useEffect } from 'react';
 import axios from "axios";
 import Dropdown from 'react-bootstrap/Dropdown';
-import { format, startOfWeek, addDays, getWeek, addWeeks, subWeeks } from "date-fns";
+import { format, startOfWeek, addDays, addWeeks, subWeeks } from "date-fns";
 
 // import css
 import './CSS/Calendar.css'
@@ -18,20 +18,20 @@ const Calendar = (  ) => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());
 	const [weekStartDay, setweekStartDay] = useState(startOfWeek(currentMonth));
 
+
 	let startWeek = startOfWeek(currentMonth, { weekStartsOn: 1 });
 	let startDate = format(startWeek,'yyyy-MM-dd')
 	let endDate = format(addDays(startWeek,6), 'yyyy-MM-dd');
 
 	console.log(startDate, endDate)
-
-
+	
 	const [events , setEvents] = useState({});
 
     const getEvents = () => {
         const request = {
 		  "apiKey": "ac258f2b29d09194ce6aa01a0438a8e5",
-		  "startDate": "2021-10-10",
-		  "endDate": "2021-10-17"
+		  "startDate": `${startDate}`,
+		  "endDate": `${endDate}`
 		}
 		axios.post(`https://wozmx9dh26.execute-api.eu-west-1.amazonaws.com/api/holidays`, request)
 			.then ( response => {
@@ -61,6 +61,7 @@ const Calendar = (  ) => {
 	      setCurrentMonth(addWeeks(currentMonth, 1));
 	    }
 	  };
+
 
 	  const changeStartDay = (numberOfDay) => {
 	  	  setweekStartDay(startOfWeek(currentMonth, { weekStartsOn: numberOfDay }))
@@ -92,17 +93,19 @@ const Calendar = (  ) => {
 
 	    }
 
+
 	    return days;
 	  };
+
 
 
 	return (
 		  <div id="calendar">
 		      
 		      
-			<div class="calendar-header">
+			<div className="calendar-header">
 		
-				<div class="header-left">
+				<div className="header-left">
 					<Dropdown>
 					  <Dropdown.Toggle className="day-dropdown">
 					    First day
@@ -122,12 +125,12 @@ const Calendar = (  ) => {
 				<div className="months">
 		          <span>{format(currentMonth, dateFormat)}</span>
 		        </div>
-				<div class="header-right">
-					<span class="calendar-button button-prev" onClick={() => changeWeekHandle("prev")}>
-						<span class="text-arrow">‹</span>
+				<div className="header-right">
+					<span className="calendar-button button-prev" onClick={() => changeWeekHandle("prev")}>
+						<span className="text-arrow">‹</span>
 					</span>
-					<span class="calendar-button button-next" onClick={() => changeWeekHandle("next")}>
-						<span class="text-arrow">›</span>
+					<span className="calendar-button button-next" onClick={() => changeWeekHandle("next")}>
+						<span className="text-arrow">›</span>
 					</span>
 				</div>
 					
