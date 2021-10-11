@@ -24,7 +24,7 @@ const Calendar = (  ) => {
 	let endDate = format(addDays(startWeek,6), 'yyyy-MM-dd');
 
 	console.log(startDate, endDate)
-	
+
 	const [events , setEvents] = useState({});
 
     const getEvents = () => {
@@ -69,7 +69,11 @@ const Calendar = (  ) => {
 
 	  const checkEvents = (day) => {
 	  	const holidays = events[day] ?? [];
-	  	return holidays.map(h => <div>{h.name}</div>)
+
+	  	return holidays.map(h => {
+	  		if (h.type === "folk") { return <div className="holiday folk-holiday rounded bg-secondary">{h.name}</div> }
+	  		else { return <div className="holiday public-holiday rounded bg-warning">{h.name}</div> }
+		})
 	  }
 
 	 const Days = (numberOfDay) => {
@@ -82,7 +86,7 @@ const Calendar = (  ) => {
 	        	<div className="day" key={i}>
 		          {format(addDays(startWeek, i), dateFormat)}
 		        </div>
-		        <div className="events">
+		        <div className="events d-flex flex-wrap">
 		          {
 		          	checkEvents(format(addDays(startWeek, i), 'yyyy-MM-dd'))
 		          }	
@@ -100,10 +104,10 @@ const Calendar = (  ) => {
 
 
 	return (
-		  <div id="calendar">
+		  <div id="calendar" className="rounded shadow h-auto">
+
 		      
-		      
-			<div className="calendar-header">
+			<div className="calendar-header d-flex justify-content-between">
 		
 				<div className="header-left">
 					<Dropdown>
@@ -126,16 +130,16 @@ const Calendar = (  ) => {
 		          <span>{format(currentMonth, dateFormat)}</span>
 		        </div>
 				<div className="header-right">
-					<span className="calendar-button button-prev" onClick={() => changeWeekHandle("prev")}>
+					<span className="calendar-button button-prev overflow-hidden" onClick={() => changeWeekHandle("prev")}>
 						<span className="text-arrow">‹</span>
 					</span>
-					<span className="calendar-button button-next" onClick={() => changeWeekHandle("next")}>
+					<span className="calendar-button button-next overflow-hidden" onClick={() => changeWeekHandle("next")}>
 						<span className="text-arrow">›</span>
 					</span>
 				</div>
 					
 			</div>
-			<div className="row days">{Days()}</div>
+			<div className="row days rounded">{Days()}</div>
 
 
 		</div>
